@@ -7,6 +7,8 @@ public class Player_Movement : MonoBehaviour
     public float speed;
 
     private Rigidbody rigid;
+
+    public float jumpAmount;
     
     void Start()
     {
@@ -23,5 +25,11 @@ public class Player_Movement : MonoBehaviour
         Vector3 move = new Vector3(horizontal, 0.0f, vertical);
         //rotates player
         rigid.AddForce(move*speed);
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigid.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+           
+        }
     }
 }
