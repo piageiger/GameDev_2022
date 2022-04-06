@@ -5,17 +5,17 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     public float speed;
-
+    
+    public bool isGrounded;
     private Rigidbody rigid;
 
-    public float jumpAmount;
+    public float jumpForce;
     
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-
     }
-
+    
     //maybe change to: FixedUpdate()
     void Update()
     {
@@ -23,13 +23,27 @@ public class Player_Movement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(horizontal, 0.0f, vertical);
-        //rotates player
         rigid.AddForce(move*speed);
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+    	
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rigid.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
-           
+            rigid.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision){
+        Debug.Log("Collision Enter");
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+    public void OnCollisionExit(Collision collision){
+        Debug.Log("Collision Exit");
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }
+    
