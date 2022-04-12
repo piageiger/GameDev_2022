@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1249839266}
   cam: {fileID: 963194228}
-  groundCheck: {fileID: 554923812}
+  groundCheck: {fileID: 1758233885}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1756,7 +1756,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635801566}
-  m_LocalRotation: {x: 0.02110379, y: -0, z: -0, w: 0.9997773}
+  m_LocalRotation: {x: 0.021103792, y: -0, z: -0, w: 0.9997773}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
