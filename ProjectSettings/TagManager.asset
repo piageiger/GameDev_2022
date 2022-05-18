@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
   - DeathZone
-  - Coin
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -14,13 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< Updated upstream
-  - 
-  - 
-=======
   - FlipPlatformA
   - FlipPlatformB
->>>>>>> Stashed changes
   - 
   - 
   - 
