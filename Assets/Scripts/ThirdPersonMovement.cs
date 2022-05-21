@@ -10,8 +10,10 @@ public class ThirdPersonMovement : MonoBehaviour
     public float jump= 3f;
     public float turnSmoothTime = 0.1f;    
     public float gravity = -9.81f;
+    public float maxSpeed;
 
     private float turnSmoothVelocity;
+    private Vector3 actualSpeed;
     private Vector3 velocity;
     public static bool isGrounded;
     private Rigidbody rigid;
@@ -39,7 +41,15 @@ public class ThirdPersonMovement : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rigid.AddForce(moveDir * speed);
+            
+            //actualSpeed = rigid.velocity;            
+            //Debug.Log(actualSpeed);
+
+            //if ((actualSpeed.x < maxSpeed) && (actualSpeed.y < maxSpeed) && (actualSpeed.z < maxSpeed))
+            //{
+                rigid.AddForce(moveDir * speed);
+            //}
+            
             
         }
 

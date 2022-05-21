@@ -7,6 +7,7 @@ public class RotateObjectDelay : MonoBehaviour
     public float angle = 90f;
     public float time = 2f;
     public string axis = "x";
+    public float delay;
 
     private Vector3 rotateAxis;
     // Use this for initialization
@@ -24,7 +25,15 @@ public class RotateObjectDelay : MonoBehaviour
         {
             rotateAxis = Vector3.forward;
         }
-        StartCoroutine(RotateObject(angle, rotateAxis, time));
+
+        if (delay > 0)
+        {
+            StartCoroutine(Delay());
+        }
+        else
+        {
+            StartCoroutine(RotateObject(angle, rotateAxis, time));
+        }
     }
 
     IEnumerator RotateObject(float angle, Vector3 axis, float inTime)
@@ -53,5 +62,11 @@ public class RotateObjectDelay : MonoBehaviour
             // delay here
             yield return new WaitForSeconds(time);
         }
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(RotateObject(angle, rotateAxis, time));
     }
 }
