@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject gameOverMenu;
     public GameObject settingsMenu;
+    public GameObject canvas;
     public AudioMixer audioMixer;
+    
 
     public void CloseMenu()
     {
@@ -42,9 +46,24 @@ public class MenuController : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", volume);
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
+        // Time.timeScale = 1;
+        // pauseMenu.SetActive(false);
+        // settingsMenu.SetActive(false);
+        // gameOverMenu.SetActive(false);     
+        // canvas.SetActive(false); 
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("Mainmenu");
     }
 
     private void OnApplicationQuit()

@@ -7,13 +7,10 @@ public class ThirdPersonMovement : MonoBehaviour
 { 
     public Transform cam;
     public float speed = 6f;
-    public float jump= 3f;
-    public float turnSmoothTime = 0.1f;    
+    public float jump= 3f;    
     public float gravity = -9.81f;
-    public float maxSpeed;
+    public float maxSpeed = 30f;
 
-    private float turnSmoothVelocity;
-    private Vector3 actualSpeed;
     private Vector3 velocity;
     public static bool isGrounded;
     private Rigidbody rigid;
@@ -33,24 +30,24 @@ public class ThirdPersonMovement : MonoBehaviour
 
         float moveLR = Input.GetAxisRaw("Horizontal")   ;
         float moveFB = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(moveLR, 0f, moveFB).normalized;
+        Vector3 position = new Vector3(moveLR, 0f, moveFB).normalized;
 
-        if (direction.magnitude > 0.1f)
+        //Move
+        if (position.magnitude > 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            float targetAngle = Mathf.Atan2(position.x, position.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            Vector3 direction = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             
-            //actualSpeed = rigid.velocity;            
-            //Debug.Log(actualSpeed);
-
-            //if ((actualSpeed.x < maxSpeed) && (actualSpeed.y < maxSpeed) && (actualSpeed.z < maxSpeed))
-            //{
-                rigid.AddForce(moveDir * speed);
-            //}
-            
-            
+            if(rigid.velocity.magnitude > maxSpeed)
+            {
+                rigid.velocity = rigid.velocity.normalized * maxSpeed;
+            }
+            else
+            {
+                rigid.AddForce(direction * speed);
+            }
         }
 
         //Jump
@@ -88,8 +85,6 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Respawn()
     {
-        //Application.LoadLevel(Application.loadedLevel);
-        //SceneManager.LoadScene(Application.loadedLevel);
         SceneManager.LoadScene("Game");
     }
 }

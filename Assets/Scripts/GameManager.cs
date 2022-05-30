@@ -5,16 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    //[SerializeField]
     private GameObject playerPrefab;
 
     [SerializeField]
     private GameObject pauseMenu;
 
-    //[serializefield]
-    //private menucontroller menucontroller;
+    [SerializeField]
+    private GameObject gameOverMenu;    
 
-    //public GameObject PlayerObject;
+    [SerializeField]
+    private GameObject canvas;    
+
+    [SerializeField]
+    private GameObject settingsMenu; 
+
+    public static bool zielErreicht = false;
 
     private void Awake()
     {
@@ -22,42 +27,57 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
     }
 
     private void Start()
     {
-        //SpawnPlayer();
+        StartGame();
     }
 
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
-            if (pauseMenu.activeInHierarchy)
+            canvas.SetActive(!canvas.activeInHierarchy);
+            if (canvas.activeInHierarchy)
             {
-                PauseGame();
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
             }
             else
             {
                 Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+                settingsMenu.SetActive(false);
             }
         }
+
+        if(zielErreicht)
+        {
+            ShowGameOverMenu();            
+        }
+
     }
 
-    private void PauseGame()
+    public void StartGame()
     {
+        Debug.Log("starting Game");
+        Time.timeScale = 1;
+        canvas.SetActive(false);
+        Debug.Log("canvas off");
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);  
+        //settingsMenu.SetActive(false);      
+    }
+
+    public void ShowGameOverMenu()
+    {
+        canvas.SetActive(true);
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(true);        
         Time.timeScale = 0;
+        
     }
 
-    public void SpawnPlayer()
-    {
-       //PlayerObject = Instantiate(playerPrefab);
-      
-    }
-
-    public void DestroyPlayer()
-    {
-        //Destroy(PlayerObject);
-    }
 }
