@@ -14,36 +14,28 @@ public class SpawnGegner : MonoBehaviour
     public float spawnTime;
     public float spawnDelay;
     int i = 0;
-    int j = 0;
-
+    
     void OnTriggerEnter()
     {
-        if(i==0)
-        {
         InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
-        i++;
-        }
-        else{
-            stopSpawning = false; 
-            i=0;
-        }
-    }   
-    /*void OnTriggerExited()
+    }
+      
+    void OnTriggerExited()
     {
         CancelInvoke("SpawnObject)");
     }
-    */
+    
     public void SpawnObject()
     {
-        if(j==0)
+        if(i==0)
         {
             Instantiate(Spawnee, Spawnpoint1.position, Spawnpoint1.rotation);
             Instantiate(Spawnee, Spawnpoint3.position, Spawnpoint3.rotation);
-            j++;
+            i++;
         }
         else{
             Instantiate(Spawnee, Spawnpoint2.position, Spawnpoint2.rotation);
-            j--;
+            i--;
         }
         if(stopSpawning)
         {
