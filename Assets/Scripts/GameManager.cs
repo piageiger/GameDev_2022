@@ -39,11 +39,11 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
             if (pauseMenu.activeInHierarchy)
             {
-                Time.timeScale = 0;
+                Time.timeScale = 0f;
             }
             else
             {
-                Time.timeScale = 1;
+                Time.timeScale = 1f;
             }
         }
 
@@ -51,12 +51,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("ZielErreicht!");
             gameOverMenu.SetActive(true);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            gameOverMenu.SetActive(false);
-            Time.timeScale = 1;
+            Time.timeScale = 0f;
         }
     }
 

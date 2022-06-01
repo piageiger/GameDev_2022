@@ -7,33 +7,44 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
 
+    [SerializeField] TextMeshProUGUI coinsText;
     [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI highscoreText;
+    [SerializeField] TextMeshProUGUI bestScoreText;
 
-    int score = 0;
-    int highscore = 0;
+    public int coins = 0;
+    public int score = 0;
+    public int bestScore = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        highscore = PlayerPrefs.GetInt("highscore", 0);
-        scoreText.text = "SCORE: " + score.ToString();
-        highscoreText.text = "HIGHSCORE: "+highscore.ToString(); 
+        bestScore = PlayerPrefs.GetInt("bestScore", 0);
+        coinsText.text = "COINS: " + coins.ToString("0");
+        scoreText.text = "SCORE: " + score.ToString("0");
+        bestScoreText.text = "BESTSCORE: "+bestScore.ToString(); 
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //nehme den Wert von countCoin aus dem Skript CoinCollect
-        score = CoinCollect.countCoin;
+        score = (int)(Time.time);
         scoreText.text = "SCORE: " + score.ToString();
-        //speichere Highscore wenn dieser kleiner ist als der Score
-        if(score > highscore)
+
+        //nehme den Wert von coinsTotal aus dem Skript CoinManager
+        coins = CoinManager.coinsTotal;
+        coinsText.text = "COINS: " + coins.ToString();
+    }
+
+    public void CalculateScore()
+    {
+        score -= coins;
+
+        //speichere BestScore wenn dieser kleiner ist als der Score
+        if (score > bestScore)
         {
-            PlayerPrefs.SetInt("highscore", score);
+            bestScore = score;
+            PlayerPrefs.SetInt("bestScore", score);
         }
-        
-        
     }
 }
