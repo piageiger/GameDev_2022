@@ -11,15 +11,12 @@ public class GameManager : MonoBehaviour
     private GameObject pauseMenu;
 
     [SerializeField]
-    private GameObject gameOverMenu;    
-
-    [SerializeField]
-    private GameObject canvas;    
+    private GameObject gameOverMenu;     
 
     [SerializeField]
     private GameObject settingsMenu; 
 
-    public static bool zielErreicht = false;
+    public static bool zielErreicht;
 
     private void Awake()
     {
@@ -27,57 +24,45 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
     }
 
     private void Start()
     {
         StartGame();
+        zielErreicht = false;
     }
 
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            canvas.SetActive(!canvas.activeInHierarchy);
-            if (canvas.activeInHierarchy)
+            pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+            if (pauseMenu.activeInHierarchy)
             {
-                pauseMenu.SetActive(true);
                 Time.timeScale = 0;
             }
             else
             {
                 Time.timeScale = 1;
-                pauseMenu.SetActive(false);
-                settingsMenu.SetActive(false);
             }
         }
 
         if(zielErreicht)
         {
-            ShowGameOverMenu();            
+            Debug.Log("ZielErreicht!");
+            gameOverMenu.SetActive(true);
+            Time.timeScale = 0;
         }
-
+        else
+        {
+            gameOverMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 
     public void StartGame()
     {
         Debug.Log("starting Game");
-        Time.timeScale = 1;
-        canvas.SetActive(false);
-        Debug.Log("canvas off");
-        pauseMenu.SetActive(false);
-        gameOverMenu.SetActive(false);  
-        //settingsMenu.SetActive(false);      
+        Time.timeScale = 1; 
     }
-
-    public void ShowGameOverMenu()
-    {
-        canvas.SetActive(true);
-        pauseMenu.SetActive(false);
-        gameOverMenu.SetActive(true);        
-        Time.timeScale = 0;
-        
-    }
-
 }

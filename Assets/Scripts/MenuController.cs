@@ -46,15 +46,12 @@ public class MenuController : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", volume);
     }
 
+
     public void RestartGame()
     {
         SceneManager.LoadScene("Game");
-        // Time.timeScale = 1;
-        // pauseMenu.SetActive(false);
-        // settingsMenu.SetActive(false);
-        // gameOverMenu.SetActive(false);     
-        // canvas.SetActive(false); 
     }
+
 
     public void QuitGame()
     {
@@ -64,10 +61,5 @@ public class MenuController : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("Mainmenu");
-    }
-
-    private void OnApplicationQuit()
-    {
-        //Save game?
     }
 }

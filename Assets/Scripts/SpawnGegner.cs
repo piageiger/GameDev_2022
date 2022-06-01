@@ -20,9 +20,10 @@ public class SpawnGegner : MonoBehaviour
         InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
     }
       
-    void OnTriggerExited()
+    void OnTriggerExit()
     {
-        CancelInvoke("SpawnObject)");
+        CancelInvoke();
+        Debug.Log("exit");
     }
     
     public void SpawnObject()
@@ -39,7 +40,7 @@ public class SpawnGegner : MonoBehaviour
         }
         if(stopSpawning)
         {
-            CancelInvoke("SpawnObject");
+            CancelInvoke();
         }
     }
     /*Instantiate(Prefab, Spawnpoint1.position, Spawnpoint1.rotation);
