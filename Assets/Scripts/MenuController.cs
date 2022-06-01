@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     public GameObject gameOverMenu;
     public GameObject settingsMenu;
     public GameObject canvas;
+    public GameObject deathScreen;
     public AudioMixer audioMixer;
     
 
@@ -62,4 +63,19 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Mainmenu");
     }
+    /*
+    public void ShowDeathScreen()
+    {
+        Debug.Log("test");
+        deathScreen.SetActive(true);
+        //Invoke("HideDeathScreen", 2.0f);
+    }
+
+    public void HideDeathScreen()
+    {
+        deathScreen.SetActive(false);
+
+    }*/
+
+
 }

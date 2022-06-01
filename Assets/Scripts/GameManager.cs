@@ -11,16 +11,20 @@ public class GameManager : MonoBehaviour
     private GameObject pauseMenu;
 
     [SerializeField]
-    private GameObject gameOverMenu;     
+    private GameObject gameOverMenu;
 
     [SerializeField]
-    private GameObject settingsMenu; 
+    private GameObject settingsMenu;
+
+    [SerializeField]
+    private GameObject deathScreen;
 
     public static bool zielErreicht;
+    public static bool died;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -34,12 +38,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
             if (pauseMenu.activeInHierarchy)
             {
                 Time.timeScale = 0f;
+<<<<<<< Updated upstream
+=======
+                deathScreen.SetActive(false);
+>>>>>>> Stashed changes
             }
             else
             {
@@ -47,17 +55,31 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(zielErreicht)
+        if (zielErreicht)
         {
-            Debug.Log("ZielErreicht!");
             gameOverMenu.SetActive(true);
             Time.timeScale = 0f;
+<<<<<<< Updated upstream
+=======
         }
+
+        if((died) && (!pauseMenu.activeInHierarchy))
+        {
+            deathScreen.SetActive(true);
+            Invoke("HideDeathScreen", 2.0f);
+>>>>>>> Stashed changes
+        }
+
     }
 
     public void StartGame()
     {
-        Debug.Log("starting Game");
-        Time.timeScale = 1; 
+        Time.timeScale = 1;
+    }
+
+    private void HideDeathScreen()
+    {
+        died = false;
+        deathScreen.SetActive(false);
     }
 }

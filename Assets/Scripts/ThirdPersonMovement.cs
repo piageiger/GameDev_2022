@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class ThirdPersonMovement : MonoBehaviour
 { 
@@ -14,7 +15,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private Vector3 velocity;
     public static bool isGrounded;
     private Rigidbody rigid;
-    
+
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -62,7 +63,7 @@ public class ThirdPersonMovement : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -75,7 +76,7 @@ public class ThirdPersonMovement : MonoBehaviour
         }    
     }
 
-    void OnCollisionExit(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -83,8 +84,10 @@ public class ThirdPersonMovement : MonoBehaviour
         }
     }
 
-    void Respawn()
+    private void Respawn()
     {
         SceneManager.LoadScene("Game");
+        GameManager.died = true;
+        ScoreManager.addFalldown += 100;
     }
 }
