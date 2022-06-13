@@ -44,10 +44,7 @@ public class GameManager : MonoBehaviour
             if (pauseMenu.activeInHierarchy)
             {
                 Time.timeScale = 0f;
-<<<<<<< Updated upstream
-=======
                 deathScreen.SetActive(false);
->>>>>>> Stashed changes
             }
             else
             {
@@ -59,15 +56,12 @@ public class GameManager : MonoBehaviour
         {
             gameOverMenu.SetActive(true);
             Time.timeScale = 0f;
-<<<<<<< Updated upstream
-=======
         }
 
         if((died) && (!pauseMenu.activeInHierarchy))
         {
             deathScreen.SetActive(true);
             Invoke("HideDeathScreen", 2.0f);
->>>>>>> Stashed changes
         }
 
     }
