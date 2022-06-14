@@ -29,14 +29,7 @@ public class DespawnOnJump : MonoBehaviour
         bool isGrounded = ThirdPersonMovement.isGrounded;
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            if(en_disabled)
-            {
-                en_disabled = false;
-            }
-            else
-            {
-                en_disabled = true;
-            }
+            en_disabled = !en_disabled;
             //Rufe ChangeVisibility nach 0.1 Sekunden auf
             Invoke("ChangeVisibility", 0.1f);
         }
