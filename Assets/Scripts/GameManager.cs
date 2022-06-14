@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     private GameObject playerPrefab;
 
     [SerializeField]
+    private GameObject hudMenu;
+
+    [SerializeField]
     private GameObject pauseMenu;
 
     [SerializeField]
@@ -46,15 +49,17 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0f;
                 deathScreen.SetActive(false);
             }
-            else
+            else if (!pauseMenu.activeInHierarchy && !zielErreicht)
             {
                 Time.timeScale = 1f;
             }
         }
 
+        // is set true when GoalTrigger is entered
         if (zielErreicht)
         {
             gameOverMenu.SetActive(true);
+            hudMenu.SetActive(false);
             Time.timeScale = 0f;
         }
 

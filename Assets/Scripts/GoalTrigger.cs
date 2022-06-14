@@ -17,5 +17,4 @@ public class GoalTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
     }
-
 }

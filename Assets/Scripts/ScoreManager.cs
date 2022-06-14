@@ -7,45 +7,69 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI coinsText;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI bestScoreText;
+    [SerializeField] bool isHUD = true;
+
+    [SerializeField] TextMeshProUGUI coinsTextEND;
+    [SerializeField] TextMeshProUGUI scoreTextEND;
+    [SerializeField] TextMeshProUGUI finalScoreTextEND;
+    [SerializeField] TextMeshProUGUI bestScoreTextEND;
+
+    [SerializeField] TextMeshProUGUI coinsTextHUD;
+    [SerializeField] TextMeshProUGUI scoreTextHUD;
+    [SerializeField] TextMeshProUGUI bestScoreTextHUD;
 
     public static int coins = 0;
     public static int score = 0;
     public static int bestScore = 0;
     public static int addFalldown = 0;
 
+    private int finalScore = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         bestScore = PlayerPrefs.GetInt("bestScore", 0);
-        coinsText.text = "COINS: " + coins.ToString("0");
-        scoreText.text = "SCORE: " + score.ToString("0");
-        bestScoreText.text = "BESTSCORE: "+ bestScore.ToString(); 
+        if (isHUD) 
+        {
+            coinsTextHUD.text = "COINS: " + coins.ToString("0");
+            scoreTextHUD.text = "SCORE: " + score.ToString("0");
+            bestScoreTextHUD.text = "BESTSCORE: " + bestScore.ToString(); 
+        }
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        score = (int)(Time.time) + addFalldown;
-        scoreText.text = "SCORE: " + score.ToString();
-
         //nehme den Wert von coinsTotal aus dem Skript CoinManager
         coins = CoinManager.coinsTotal;
-        coinsText.text = "COINS: " + coins.ToString();
+        
+        if (isHUD)
+        {
+            score = (int)(Time.time) + addFalldown;
+            scoreTextHUD.text = "SCORE: " + score.ToString();
+            coinsTextHUD.text = "COINS: " + coins.ToString();
+        }
+        else 
+        {
+            CalculateScore();   
+        }
     }
 
-    public void CalculateScore()
+    private void CalculateScore()
     {
-        score -= coins;
+        scoreTextEND.text = "Score: " + "+" + score.ToString();
+        coinsTextEND.text = "Coins: " + "-" + coins.ToString(); 
+        
+        finalScore = score - coins;
+        finalScoreTextEND.text = "Final Score: " + finalScore.ToString();
 
-        //speichere BestScore wenn dieser kleiner ist als der Score
-        if (score > bestScore)
+        //speichere BestScore wenn dieser kleiner ist als der errechnete EndScore
+        if (finalScore < bestScore)
         {
-            bestScore = score;
-            PlayerPrefs.SetInt("bestScore", score);
+            bestScore = finalScore;
+            PlayerPrefs.SetInt("bestScore", bestScore);
         }
+        bestScoreTextEND.text = "Best Score: " + bestScore.ToString(); 
     }
 }

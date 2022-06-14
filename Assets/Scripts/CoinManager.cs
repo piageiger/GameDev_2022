@@ -27,6 +27,4 @@ public class CoinManager : MonoBehaviour
         coinsTotal += coinsCounter;
         gameObject.SetActive(false);
     }
-
-
 }
