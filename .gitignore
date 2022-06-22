@@ -32,7 +32,7 @@ ExportedObj/
 *.meta
 
 # Unity generated log files
-.log/
+Logs/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
