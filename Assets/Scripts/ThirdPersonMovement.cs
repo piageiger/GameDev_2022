@@ -13,12 +13,23 @@ public class ThirdPersonMovement : MonoBehaviour
     public float maxSpeed = 30f;
 
     private Vector3 velocity;
-    public static bool isGrounded;
     private Rigidbody rigid;
+
+    public static bool isGrounded;
+    public static bool checkpointsActive =true;
+    public static int checkPointNr = 0;
+
+    private Vector3 checkPoint0 = new Vector3(0f, 2f, 0f);
+
+    [SerializeField]
+    private Vector3 checkPoint1 = new Vector3(-397.84f, 2f, 330.08f);
+    [SerializeField]
+    private Vector3 checkPoint2 = new Vector3(-488.06f, 33.7f, -145.29f);
 
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        initCheckPoints();        
     }
 
     // Update is called once per frame
@@ -89,5 +100,32 @@ public class ThirdPersonMovement : MonoBehaviour
         SceneManager.LoadScene("Game");
         GameManager.died = true;
         ScoreManager.addFalldown += 100;
+    }
+
+    private void initCheckPoints()
+    {
+        checkPointNr = PlayerPrefs.GetInt("checkPointNr", 0);
+
+        if(checkpointsActive)
+        {
+            if(checkPointNr == 1)
+            {
+                Debug.Log("setze zu Checpoint 1");
+                transform.position = checkPoint1;
+            }
+            else if(checkPointNr == 2)
+            {
+                transform.position = checkPoint2;
+            }
+            else
+            {
+                Debug.Log("setze zu Checpoint 0");
+                transform.position = checkPoint0;
+            }
+        }
+        else
+        {
+            transform.position = checkPoint0;
+        }
     }
 }

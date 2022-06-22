@@ -56,11 +56,14 @@ public class MenuController : MonoBehaviour
 
     public void QuitGame()
     {
+        //ThirdPersonMovement.checkPointNr = 0;
+        PlayerPrefs.SetInt("checkPointNr", 0);
         Application.Quit();
     }
 
     public void BackToMainMenu()
     {
+        PlayerPrefs.SetInt("checkPointNr", 0);
         SceneManager.LoadScene("Mainmenu");
     }
 }

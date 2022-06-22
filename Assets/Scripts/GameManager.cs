@@ -61,6 +61,10 @@ public class GameManager : MonoBehaviour
             gameOverMenu.SetActive(true);
             hudMenu.SetActive(false);
             Time.timeScale = 0f;
+            //ThirdPersonMovement.checkPointNr = 0;
+            Debug.Log("setzte CP auf 0");
+            PlayerPrefs.SetInt("checkPointNr", 0);
+
         }
 
         if((died) && (!pauseMenu.activeInHierarchy))
