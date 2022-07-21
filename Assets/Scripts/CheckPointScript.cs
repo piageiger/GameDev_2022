@@ -9,6 +9,10 @@ public class CheckPointScript : MonoBehaviour
     void Start()
     {
         layerName = LayerMask.LayerToName(gameObject.layer);
+        if(ThirdPersonMovement.checkpointsActive == false)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void OnTriggerEnter(Collider other)

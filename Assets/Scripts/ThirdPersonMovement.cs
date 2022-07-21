@@ -16,7 +16,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private Rigidbody rigid;
 
     public static bool isGrounded;
-    public static bool checkpointsActive =true;
+    public static bool checkpointsActive =false;
     public static int checkPointNr = 0;
 
     private Vector3 checkPoint0 = new Vector3(0f, 2f, 0f);
@@ -105,12 +105,13 @@ public class ThirdPersonMovement : MonoBehaviour
     private void initCheckPoints()
     {
         checkPointNr = PlayerPrefs.GetInt("checkPointNr", 0);
+        //checkPointNr = 0;
 
         if(checkpointsActive)
         {
             if(checkPointNr == 1)
             {
-                Debug.Log("setze zu Checpoint 1");
+                Debug.Log("setze zu Checkpoint 1");
                 transform.position = checkPoint1;
             }
             else if(checkPointNr == 2)
@@ -119,13 +120,14 @@ public class ThirdPersonMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("setze zu Checpoint 0");
+                Debug.Log("setze zu Checkpoint 0");
                 transform.position = checkPoint0;
             }
         }
         else
         {
             transform.position = checkPoint0;
+
         }
     }
 }
