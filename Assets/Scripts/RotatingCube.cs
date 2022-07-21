@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotatingCube : MonoBehaviour
 {
     public float rotateInTime = 5f;
+    public int moveSpeed = 3;
 
     [SerializeField]
     private Vector3 target1 = new Vector3(30, 0, 0);
@@ -22,12 +23,11 @@ public class RotatingCube : MonoBehaviour
     private Vector3 target4 = new Vector3(0, -30, 0);
     public float rotateDegrees4 = 90f;
 
-    public int moveSpeed = 3;
-    private Vector3 actualPos;
-    private Vector3 originalPos;
     private int target = 1;
     private bool rotate = true;
-    private bool started = false;    
+    private bool started = false; 
+    private Vector3 actualPos;
+    private Vector3 originalPos;   
 
     // Start is called before the first frame update
     void Start()
@@ -130,5 +130,4 @@ public class RotatingCube : MonoBehaviour
                 yield return null;
            }
     }
-
 }

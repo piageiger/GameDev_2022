@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class SoundEffects : MonoBehaviour
 {
-    public AudioSource audioSource;
-    [SerializeField] private AudioClip coin;
-    [SerializeField] private AudioClip death;
-    [SerializeField] private AudioClip impact;
+    private AudioSource audioSource;
 
-    void OnTriggerEnter(Collider obstacle)
+    [SerializeField]
+    private AudioClip coin;
+    [SerializeField]
+    private AudioClip death;
+    [SerializeField]
+    private AudioClip impact;
+
+    void Start() 
     {
-        if (obstacle.gameObject.CompareTag("Coin"))
+        audioSource = GetComponent<AudioSource>();
+        if(audioSource == null)
         {
-            audioSource.PlayOneShot(coin); 
+            Debug.Log("AudioSouce is NULL!");
         }
-        
     }
 
-    void OnCollisionEnter(Collision obstacle)
+    void OnCollisionEnter(Collision collision)
     {
-        if (obstacle.gameObject.CompareTag("DeathZone"))
+        if(collision.gameObject.CompareTag("DeathZone") && audioSource != null)
         {
-            audioSource.PlayOneShot(death); 
+            audioSource.clip = death;
+            audioSource.Play(); 
         }
-        if (obstacle.gameObject.CompareTag("Gegner"))
+        else if (collision.gameObject.CompareTag("ImpactSound") && audioSource != null)
         {
-            audioSource.PlayOneShot(impact); 
+            audioSource.clip = impact;
+            audioSource.Play(); 
         }
-    }
-    
+    } 
 }

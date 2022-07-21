@@ -6,15 +6,12 @@ using UnityEngine.Events;
 //When reaching the goal, this script is triggered
 public class GoalTrigger : MonoBehaviour
 {
-    public UnityEvent OnTriggerEntered;
-    public UnityEvent OnTriggerExited;
+    [SerializeField]
+    private AudioClip goalAudio;
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioSource.PlayClipAtPoint(goalAudio, transform.position);
         GameManager.zielErreicht = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
     }
 }

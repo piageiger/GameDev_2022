@@ -10,6 +10,9 @@ public class CoinManager : MonoBehaviour
     public int coinsCounter = 4;
     public float rotationSpeed = 2f;
 
+    [SerializeField]
+    private AudioClip coinAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +25,9 @@ public class CoinManager : MonoBehaviour
         transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
     }
     
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
+        AudioSource.PlayClipAtPoint(coinAudio, transform.position);
         coinsTotal += coinsCounter;
         gameObject.SetActive(false);
     }

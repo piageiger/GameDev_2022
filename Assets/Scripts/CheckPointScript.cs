@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CheckPointScript : MonoBehaviour
 {
-    private string layerName; 
-    // Start is called before the first frame update
+    private string layerName;
+    
     void Start()
     {
         layerName = LayerMask.LayerToName(gameObject.layer);
@@ -23,7 +23,7 @@ public class CheckPointScript : MonoBehaviour
             ThirdPersonMovement.checkPointNr = 1;
             PlayerPrefs.SetInt("checkPointNr", ThirdPersonMovement.checkPointNr);
         } 
-        if(layerName == "CheckPoint2") 
+        else if(layerName == "CheckPoint2") 
         {
             Debug.Log("CheckPoint 2 erreicht!");
             ThirdPersonMovement.checkPointNr = 2;    

@@ -16,7 +16,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private Rigidbody rigid;
 
     public static bool isGrounded;
-    public static bool checkpointsActive =false;
+    public static bool checkpointsActive = false;
     public static int checkPointNr = 0;
 
     private Vector3 checkPoint0 = new Vector3(0f, 2f, 0f);
@@ -25,6 +25,10 @@ public class ThirdPersonMovement : MonoBehaviour
     private Vector3 checkPoint1 = new Vector3(-397.84f, 2f, 330.08f);
     [SerializeField]
     private Vector3 checkPoint2 = new Vector3(-488.06f, 33.7f, -145.29f);
+    [SerializeField]
+    private AudioClip deathAudio;
+    [SerializeField]
+    private AudioClip collisionAudio;
 
     void Start()
     {
@@ -81,10 +85,14 @@ public class ThirdPersonMovement : MonoBehaviour
             isGrounded = true;
         }
         //Wenn DeathZone erreicht wurde, dann reset
-        if(collision.gameObject.CompareTag("DeathZone"))
+        else if(collision.gameObject.CompareTag("DeathZone"))
         {
             Respawn();
-        }    
+        }
+        else 
+        {
+            AudioSource.PlayClipAtPoint(collisionAudio, transform.position);
+        }  
     }
 
     private void OnCollisionExit(Collision collision)
@@ -97,6 +105,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void Respawn()
     {
+        AudioSource.PlayClipAtPoint(deathAudio, transform.position);
         SceneManager.LoadScene("Game");
         GameManager.died = true;
         ScoreManager.addFalldown += 100;
@@ -105,13 +114,12 @@ public class ThirdPersonMovement : MonoBehaviour
     private void initCheckPoints()
     {
         checkPointNr = PlayerPrefs.GetInt("checkPointNr", 0);
-        //checkPointNr = 0;
 
         if(checkpointsActive)
         {
             if(checkPointNr == 1)
             {
-                Debug.Log("setze zu Checkpoint 1");
+                Debug.Log("setze zu Checpoint 1");
                 transform.position = checkPoint1;
             }
             else if(checkPointNr == 2)
@@ -120,14 +128,13 @@ public class ThirdPersonMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("setze zu Checkpoint 0");
+                Debug.Log("setze zu Checpoint 0");
                 transform.position = checkPoint0;
             }
         }
         else
         {
             transform.position = checkPoint0;
-
         }
     }
 }

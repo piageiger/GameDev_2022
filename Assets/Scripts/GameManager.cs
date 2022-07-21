@@ -9,16 +9,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject hudMenu;
-
     [SerializeField]
     private GameObject pauseMenu;
-
     [SerializeField]
     private GameObject gameOverMenu;
-
     [SerializeField]
     private GameObject settingsMenu;
-
     [SerializeField]
     private GameObject deathScreen;
 
@@ -61,10 +57,8 @@ public class GameManager : MonoBehaviour
             gameOverMenu.SetActive(true);
             hudMenu.SetActive(false);
             Time.timeScale = 0f;
-            //ThirdPersonMovement.checkPointNr = 0;
             Debug.Log("setzte CP auf 0");
             PlayerPrefs.SetInt("checkPointNr", 0);
-
         }
 
         if((died) && (!pauseMenu.activeInHierarchy))
@@ -72,7 +66,6 @@ public class GameManager : MonoBehaviour
             deathScreen.SetActive(true);
             Invoke("HideDeathScreen", 2.0f);
         }
-
     }
 
     public void StartGame()
