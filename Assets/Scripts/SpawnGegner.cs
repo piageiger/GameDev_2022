@@ -15,6 +15,23 @@ public class SpawnGegner : MonoBehaviour
     public float spawnDelay;
     int i = 0;
     
+    void OnTriggerEnter(Collider collision)
+        {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+        Debug.Log("Entered");
+        InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+        }
+        }
+    void OnTriggerExit(Collider collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+        CancelInvoke();
+        Debug.Log("exit");
+        }
+    }
+/*
     void OnTriggerEnter()
     {
         InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
@@ -25,7 +42,7 @@ public class SpawnGegner : MonoBehaviour
         CancelInvoke();
         Debug.Log("exit");
     }
-    
+    */
     public void SpawnObject()
     {
         if(i==0)
@@ -37,10 +54,6 @@ public class SpawnGegner : MonoBehaviour
         else{
             Instantiate(Spawnee, Spawnpoint2.position, Spawnpoint2.rotation);
             i--;
-        }
-        if(stopSpawning)
-        {
-            CancelInvoke();
         }
     }
     /*Instantiate(Prefab, Spawnpoint1.position, Spawnpoint1.rotation);
