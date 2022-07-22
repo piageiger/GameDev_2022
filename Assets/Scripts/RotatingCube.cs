@@ -17,7 +17,7 @@ public class RotatingCube : MonoBehaviour
 
     [SerializeField]
     private Vector3 target3 = new Vector3(0, 0, 30);
-    public float rotateDegrees3 = 90f;
+    public float rotateDegrees3 = 180f;
 
     [SerializeField]
     private Vector3 target4 = new Vector3(0, -30, 0);

@@ -34,6 +34,13 @@ public class CheckPointScript : MonoBehaviour
             ThirdPersonMovement.checkPointNr = 2;    
             PlayerPrefs.SetInt("checkPointNr", ThirdPersonMovement.checkPointNr);
         }      
+        else if(layerName == "CheckPoint3") 
+        {
+            Debug.Log("CheckPoint 3 erreicht!");
+            ThirdPersonMovement.checkPointNr = 3;    
+            PlayerPrefs.SetInt("checkPointNr", ThirdPersonMovement.checkPointNr);
+        } 
         gameObject.SetActive(false);
+        
     }
 }
