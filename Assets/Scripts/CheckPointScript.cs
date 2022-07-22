@@ -5,6 +5,9 @@ using UnityEngine;
 public class CheckPointScript : MonoBehaviour
 {
     private string layerName;
+
+    [SerializeField]
+    private AudioClip checkpointAudio;
     
     void Start()
     {
@@ -13,25 +16,12 @@ public class CheckPointScript : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        /*
-        if(ThirdPersonMovement.checkPointNr == 1)
-        {
-            if(layerName == "CheckPoint1") 
-            {    
-                gameObject.SetActive(false);
-            }
-        }
-        
-        if(ThirdPersonMovement.checkPointNr == 2)
-        {
-            gameObject.SetActive(false);
-            
-        }
-        */
     }
 
     public void OnTriggerEnter(Collider other)
     {
+        AudioSource.PlayClipAtPoint(checkpointAudio, transform.position);
+        
         if(layerName == "CheckPoint1") 
         {
             Debug.Log("CheckPoint 1 erreicht!");
