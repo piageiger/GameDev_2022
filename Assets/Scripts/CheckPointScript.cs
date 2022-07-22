@@ -13,6 +13,21 @@ public class CheckPointScript : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        /*
+        if(ThirdPersonMovement.checkPointNr == 1)
+        {
+            if(layerName == "CheckPoint1") 
+            {    
+                gameObject.SetActive(false);
+            }
+        }
+        
+        if(ThirdPersonMovement.checkPointNr == 2)
+        {
+            gameObject.SetActive(false);
+            
+        }
+        */
     }
 
     public void OnTriggerEnter(Collider other)

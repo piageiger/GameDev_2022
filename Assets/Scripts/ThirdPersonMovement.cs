@@ -16,7 +16,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private Rigidbody rigid;
 
     public static bool isGrounded;
-    public static bool checkpointsActive = false;
+    public static bool checkpointsActive = true;
     public static int checkPointNr = 0;
 
     private Vector3 checkPoint0 = new Vector3(0f, 2f, 0f);
