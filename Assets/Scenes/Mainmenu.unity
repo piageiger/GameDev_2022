@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2345a05f29bd72541ba0227e3293e28d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonText: {fileID: 865818924}
 --- !u!1 &407425012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1216647756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2304,7 +2305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ffd1a1258b3c548ab601a16349a8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsMenu: {fileID: 0}
+  settingsMenu: {fileID: 1916316405}
   mainMenu: {fileID: 1216647754}
 --- !u!1 &1769360251
 GameObject:
@@ -2599,7 +2600,7 @@ GameObject:
   - component: {fileID: 1916316406}
   - component: {fileID: 1916316407}
   m_Layer: 5
-  m_Name: SettingsMenu2
+  m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

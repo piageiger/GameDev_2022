@@ -24,11 +24,28 @@ public class ScoreManager : MonoBehaviour
     public static int addFalldown = 0;
 
     private int finalScore = 0;
+    public static bool restart = false;
+    public static float ellapsedTime;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        bestScore = PlayerPrefs.GetInt("bestScore", 0);
+        if(restart)
+        {
+            coins = 0;
+            score = 0;
+            addFalldown = 0;
+            ellapsedTime = 0; //Time.time;//timeSinceLevelLoad;
+            PlayerPrefs.SetFloat("ellapsedTime", 0);
+            restart = false;
+        }
+        //startTime = Time.time;
+        
+        
+
+        bestScore = PlayerPrefs.GetInt("bestScore", 10000);
+        ellapsedTime = PlayerPrefs.GetFloat("ellapsedTime", 0);
         if (isHUD) 
         {
             coinsTextHUD.text = "COINS: " + coins.ToString("0");
@@ -46,7 +63,11 @@ public class ScoreManager : MonoBehaviour
         
         if (isHUD)
         {
-            score = (int)(Time.time) + addFalldown;
+            ellapsedTime += Time.deltaTime;
+            //lapsedTime = Time.time - startTime;
+            score = (int)(ellapsedTime) + addFalldown;
+            //Debug.Log(startTime);
+            //Debug.Log(elapsedTime);
             scoreTextHUD.text = "SCORE: " + score.ToString();
             coinsTextHUD.text = "COINS: " + coins.ToString();
         }

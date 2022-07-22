@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        ScoreManager.restart = true;
         SceneManager.LoadScene("Game");
         Time.timeScale = 1;
     }

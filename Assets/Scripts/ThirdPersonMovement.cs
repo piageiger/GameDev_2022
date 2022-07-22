@@ -109,6 +109,7 @@ public class ThirdPersonMovement : MonoBehaviour
         SceneManager.LoadScene("Game");
         GameManager.died = true;
         ScoreManager.addFalldown += 100;
+        PlayerPrefs.SetFloat("ellapsedTime", ScoreManager.ellapsedTime);
     }
 
     private void initCheckPoints()

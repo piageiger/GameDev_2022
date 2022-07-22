@@ -50,6 +50,7 @@ public class MenuController : MonoBehaviour
 
     public void RestartGame()
     {
+        ScoreManager.restart = true;
         SceneManager.LoadScene("Game");
     }
 
